@@ -16,7 +16,7 @@
   <details>
 <summary><h4>Project Discription</h4></summary>
 Artificial intelligence program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy. <br>
-- Findings presented at the Canadian Undergraduate Conference on Artificial Intelligence (CUCAI)
+- Findings were presented at the Canadian Undergraduate Conference on Artificial Intelligence (CUCAI)
   </details>
 
 <h3 align="middle">Click on the image below to download the 2023 CUCAI paper for this project</h3>
