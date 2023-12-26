@@ -12,4 +12,4 @@
   
   <details>
 <summary><h4>Project Discription</h4></summary>
-Bipolar disorder, especially bipolar II disorder, is known to have a high suicide and self-harm rate and a high misdiagnosis rate. This project attempts to identify patients with bipolar II disorder among healthy controls and patients with major depressive disorder. We used the motor activity data collected by the motion-sensitive sensor at Haukland University Hospital, Bergen, Norway and applied a convolutional neural network and a long short-term memory network with corresponding accuracies of 63.48% and 75.7%, respectively.
+Artificial intelligence (AI) program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy (findings presented at CUCAI).
