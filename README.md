@@ -21,6 +21,6 @@ Artificial intelligence (AI) program in Python that uses motor activity data fro
 <h3 align="middle">Click on the image below to download the 2023 CUCAI paper for this project</h3>
 <div align="center">
     <a href="https://raw.githubusercontent.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/main/CUCAIPaper2023.pdf">
-        <img src="https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/assets/102880878/3a25ad4c-f3db-4ea4-be1c-80a9f1514e20" width="50%" alt="PDF Preview">
+        <img src="https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/assets/102880878/1fa30256-7cda-4465-a899-75f5a40fa87f" width="50%" alt="PDF Preview">
     </a>
 </div>
