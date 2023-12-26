@@ -1,1 +1,7 @@
-Run the following command in your terminal based on your respective opperating system below to download the required 
+Run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required interpreters and libraries.
+
+MACOS
+
+Windows
+
+Linux
