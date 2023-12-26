@@ -18,4 +18,4 @@
 Artificial intelligence (AI) program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy (findings presented at CUCAI).
   </details>
 
-[![PDF Preview](https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/assets/102880878/85a47a4e-81af-4239-8015-c8a89c2c0cae)](https://raw.githubusercontent.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/main/CUCAIPaper2023.pdf)
+[![PDF Preview](https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/assets/102880878/17c9d464-0d48-4acb-80da-2d55f4eb0431)](https://raw.githubusercontent.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/main/CUCAIPaper2023.pdf)
