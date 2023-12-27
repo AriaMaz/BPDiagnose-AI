@@ -1,27 +1,5 @@
 # Motion-Based-Diagnostic-AI-for-BPD
 
-## Setup
-To use this model, it is recommended to run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required package managerss, interpreters, and libraries.
-
-#### MacOS
-
-```html
-    <p>dummy code</p>
-```
-
-#### Windows
-
-```html
-    <p>dummy code</p>
-```
-
-#### Linux
-
-```html
-    <p>dummy code</p>
-```
-
-
 <a href="https://github.com/AriaMaz">
 <a href="https://www.cucai.ca/">
     <img src="https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/assets/102880878/b24fd3cf-f59e-4ff2-9f3c-6c8f85ef6d83" align="right" width="221" alt="Logo">
@@ -35,11 +13,33 @@ To use this model, it is recommended to run the following command in your termin
 - Julien Pierre Chanel <br>
 - Rabab Azeem <br>
 <p><p>
-  
-  <details>
-<summary><h4>Project Discription</h4></summary>
+
+<h3 align="left">Project Discription</h3>
 Artificial intelligence program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy. <br>
 - Findings were presented at the Canadian Undergraduate Conference on Artificial Intelligence (CUCAI)
+
+  
+  <details>
+<summary><h4>Setup</h4></summary>
+To use this model, it is recommended to run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required package managerss, interpreters, and libraries.
+
+#### MacOS
+
+```html
+    <p>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install python && mkdir BPDAI && cd BPDAI && python3 -m venv BPDAIenv && source BPDAIenv/bin/activate && pip install pandas matplotlib numpy tensorflow keras scik</p>
+```
+
+#### Windows
+
+```html
+    <p>mkdir BPDAI; cd BPDAI; python -m venv BPDAIenv; .\BPDAIenv\Scripts\Activate; pip install pandas matplotlib numpy tensorflow keras scikit-learn</p>
+```
+
+#### Linux
+
+```html
+    <p>sudo apt update && sudo apt install python3-venv python3-pip && mkdir BPDAI && cd BPDAI && python3 -m venv BPDAIenv && source BPDAIenv/bin/activate && pip install pandas matplotlib numpy tensorflow keras scikit-learn</p>
+```
   </details>
 
 <h3 align="middle">Click on the image below to download the 2023 CUCAI paper for this project</h3>
