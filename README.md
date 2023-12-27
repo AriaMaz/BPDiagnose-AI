@@ -14,6 +14,7 @@
 - Naser AI-Obeidat <br>
 - Rabab Azeem <br>
 <p><p>
+<br>
 
 <h3 align="left">Project Discription</h3>
 Artificial intelligence program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy. <br>
