@@ -26,25 +26,25 @@ def daily_data_generator_condition(j):
     day_splitter = test_file[(test_file["hour"] == 0) & (test_file["minute"] == 0)].index
 
     # Split the data by day, discarding incomplete first and last days
-    daily_motion_j = pd.DataFrame()
+    DailyMotorActivityReadings_j = pd.DataFrame()
     for i in range(1, len(day_splitter) - 1):
         start = day_splitter[i]
         end = day_splitter[i + 1]
-        daily_motion_j[i] = test_file["activity"].loc[start:end - 1].to_numpy()
+        DailyMotorActivityReadings_j[i] = test_file["activity"].loc[start:end - 1].to_numpy()
 
     # Transpose and configure the DataFrame
-    daily_motion_j = daily_motion_j.transpose()
-    daily_motion_j.columns = np.arange(daily_motion_j.shape[1])
+    DailyMotorActivityReadings_j = DailyMotorActivityReadings_j.transpose()
+    DailyMotorActivityReadings_j.columns = np.arange(DailyMotorActivityReadings_j.shape[1])
 
     # Add time and other attributes from scores.csv
     temp = test_file["timestamp"].iloc[day_splitter]
-    daily_motion_j["Time"] = temp.dt.date.iloc[1:-1].to_list()
-    daily_motion_j = daily_motion_j.set_index("Time")
+    DailyMotorActivityReadings_j["Time"] = temp.dt.date.iloc[1:-1].to_list()
+    DailyMotorActivityReadings_j = DailyMotorActivityReadings_j.set_index("Time")
 
     # Repeat this process for attributes like age, gender, etc.
     # ...
 
-    return daily_motion_j
+    return DailyMotorActivityReadings_j
 
 # Similar function for control data, replacing 'condition' with 'control'
 def daily_data_generator_control(j):
@@ -54,7 +54,7 @@ def daily_data_generator_control(j):
 # Main execution block
 if __name__ == "__main__":
     # Initialize DataFrame with data for a specific condition
-    daily_motion = daily_data_generator_condition(5)
+    DailyMotorActivityReadings = daily_data_generator_condition(5)
 
     # Define ranges for condition and control numbers
     control_number = np.arange(1, 33)
@@ -62,11 +62,11 @@ if __name__ == "__main__":
 
     # Concatenate data for all conditions and controls
     for k in condition_number:
-        daily_motion = pd.concat([daily_motion, daily_data_generator_condition(k)], axis=0)
+        DailyMotorActivityReadings = pd.concat([DailyMotorActivityReadings, daily_data_generator_condition(k)], axis=0)
     for h in control_number:
-        daily_motion = pd.concat([daily_motion, daily_data_generator_control(h)], axis=0)
+        DailyMotorActivityReadings = pd.concat([DailyMotorActivityReadings, daily_data_generator_control(h)], axis=0)
 
     # Shuffle, reset index, and save the combined DataFrame
-    daily_motion = daily_motion.sample(frac=1).reset_index(drop=True)
-    daily_motion.to_csv(output_file_saving_location + "daily_motion.csv")
+    DailyMotorActivityReadings = DailyMotorActivityReadings.sample(frac=1).reset_index(drop=True)
+    DailyMotorActivityReadings.to_csv(output_file_saving_location + "DailyMotorActivityReadings.csv")
 
