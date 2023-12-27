@@ -11,7 +11,7 @@ output_file_saving_location = "C:/Users/20amd23/OneDrive - Queen's University/20
 def daily_data_generator_condition(j):
     """
     Process and normalize activity data for a given condition.
-    """
+    ""
     # Load file and convert the timestamp from string to date
     test_file = pd.read_csv(condition_location + str(j) + ".csv")
     score_file = pd.read_csv(score_location)
