@@ -3,10 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # File path configurations - Update these paths as necessary
-score_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/scores.csv"
-control_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/control/control_"
-condition_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/condition/condition_"
-output_file_saving_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/"
+score_location = "C:/Users/20amd23/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/scores.csv"
+control_location = "C:/Users/20amd23/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/control/control_"
+condition_location = "C:/Users/20amd23/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/condition/condition_"
+output_file_saving_location = "C:/Users/20amd23/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/"
 
 def daily_data_generator_condition(j):
     """
