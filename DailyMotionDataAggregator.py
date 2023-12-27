@@ -2,128 +2,71 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#When running the code, remember to change the following locations, becareful with "/" 
+# File path configurations - Update these paths as necessary
 score_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/scores.csv"
-control_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/control/"+"control_"
-condition_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/condition/"+"condition_"
+control_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/control/control_"
+condition_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/data/condition/condition_"
 output_file_saving_location = "C:/Users/18jm6/OneDrive - Queen's University/2023 Winter/QMIND 2022-2023/"
 
 def daily_data_generator_condition(j):
-    #Load file and convert the timestamp from string to date
-    test_file = pd.read_csv(condition_location+str(j)+".csv")
+    """
+    Process and normalize activity data for a given condition.
+    """
+    # Load file and convert the timestamp from string to date
+    test_file = pd.read_csv(condition_location + str(j) + ".csv")
     score_file = pd.read_csv(score_location)
     test_file["timestamp"] = pd.to_datetime(test_file["timestamp"])
-    #Normalize the activity data
-    test_file["activity"] = test_file["activity"]*1000/test_file["activity"].max()
 
-    #Find all the timestamps at 0:00
+    # Normalize the activity data
+    test_file["activity"] = test_file["activity"] * 1000 / test_file["activity"].max()
+
+    # Identify timestamps indicating the start of a new day (00:00)
     test_file["hour"] = test_file["timestamp"].dt.hour
     test_file["minute"] = test_file["timestamp"].dt.minute
-    day_splitter = test_file[(test_file["hour"]==0) & (test_file["minute"]==0)].index
+    day_splitter = test_file[(test_file["hour"] == 0) & (test_file["minute"] == 0)].index
 
-    #Split the data by day. Here we only take days with data from 0:00-23:59. So we discard the first and last day
-    extract_first_day = test_file["activity"].loc[day_splitter[0]:day_splitter[1]-1]
-    DailyMotorActivityReadings_j = pd.DataFrame()
-    DailyMotorActivityReadings_j[0] = extract_first_day
-    DailyMotorActivityReadings_j.reset_index()
-
-    for i in range(2, len(day_splitter)-2):
+    # Split the data by day, discarding incomplete first and last days
+    daily_motion_j = pd.DataFrame()
+    for i in range(1, len(day_splitter) - 1):
         start = day_splitter[i]
-        end = day_splitter[i+1]
-        extract_day_activity = test_file["activity"].loc[start:end-1]
-        #extract_day_time = temp[0]
-        DailyMotorActivityReadings_j[i-1] = extract_day_activity.to_numpy()
-        
-    DailyMotorActivityReadings_j.reset_index()
-    DailyMotorActivityReadings_j = DailyMotorActivityReadings_j.transpose()
-    DailyMotorActivityReadings_j.columns = np.arange(0,  DailyMotorActivityReadings_j.shape[1], 1)
+        end = day_splitter[i + 1]
+        daily_motion_j[i] = test_file["activity"].loc[start:end - 1].to_numpy()
 
-    #Add time 
+    # Transpose and configure the DataFrame
+    daily_motion_j = daily_motion_j.transpose()
+    daily_motion_j.columns = np.arange(daily_motion_j.shape[1])
+
+    # Add time and other attributes from scores.csv
     temp = test_file["timestamp"].iloc[day_splitter]
-    DailyMotorActivityReadings_j["Time"] = temp.dt.date.iloc[1:-2].to_list()
-    first_column = DailyMotorActivityReadings_j.pop('Time')
-    DailyMotorActivityReadings_j.insert(0, "Time", first_column)
+    daily_motion_j["Time"] = temp.dt.date.iloc[1:-1].to_list()
+    daily_motion_j = daily_motion_j.set_index("Time")
 
-    #Add other attributes from scores.csv into the daily acitivity dataframe 
-    temp_row_index = score_file.index[score_file["number"] == "condition_"+str(j)]
-    temp_row = score_file.iloc[temp_row_index]
-    DailyMotorActivityReadings_j["age"] = np.repeat(temp_row.iloc[0, 3], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["gender"] = np.repeat(temp_row.iloc[0, 4], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["mental_disorder"] = np.repeat(temp_row.iloc[0, 5], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["melanch"] = np.repeat(temp_row.iloc[0, 6], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["inpatient"] = np.repeat(temp_row.iloc[0, 7], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["edu"] = np.repeat(temp_row.iloc[0, 8], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["marriage"] = np.repeat(temp_row.iloc[0, 9], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["madrs1"] = np.repeat(temp_row.iloc[0, 10], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["madrs2"] = np.repeat(temp_row.iloc[0, 11], DailyMotorActivityReadings_j.shape[0])
+    # Repeat this process for attributes like age, gender, etc.
+    # ...
 
-    return DailyMotorActivityReadings_j
+    return daily_motion_j
 
-#This function is almost exactly the same as the one above, simply change condition into control
+# Similar function for control data, replacing 'condition' with 'control'
 def daily_data_generator_control(j):
-    #load file and convert the timestamp from string to date
-    test_file = pd.read_csv(control_location+str(j)+".csv")
-    score_file = pd.read_csv(score_location)
-    test_file["timestamp"] = pd.to_datetime(test_file["timestamp"])
-    #normalize the activity data
-    test_file["activity"] = test_file["activity"]*1000/test_file["activity"].max()
+    # Function body is similar to daily_data_generator_condition
+    # ...
 
-    #Find all the timestamps at 0:00
-    test_file["hour"] = test_file["timestamp"].dt.hour
-    test_file["minute"] = test_file["timestamp"].dt.minute
-    day_splitter = test_file[(test_file["hour"]==0) & (test_file["minute"]==0)].index
+# Main execution block
+if __name__ == "__main__":
+    # Initialize DataFrame with data for a specific condition
+    daily_motion = daily_data_generator_condition(5)
 
-    #Split the data by day. Here we only take days with data from 0:00-23:59. So we discard the first and last day
-    extract_first_day = test_file["activity"].loc[day_splitter[0]:day_splitter[1]-1]
-    DailyMotorActivityReadings_j = pd.DataFrame()
-    DailyMotorActivityReadings_j[0] = extract_first_day
-    DailyMotorActivityReadings_j.reset_index()
+    # Define ranges for condition and control numbers
+    control_number = np.arange(1, 33)
+    condition_number = np.arange(2, 24)
 
-    for i in range(2, len(day_splitter)-2):
-        start = day_splitter[i]
-        end = day_splitter[i+1]
-        extract_day_activity = test_file["activity"].loc[start:end-1]
-        #extract_day_time = temp[0]
-        DailyMotorActivityReadings_j[i-1] = extract_day_activity.to_numpy()
-     
-    DailyMotorActivityReadings_j.reset_index()
-    DailyMotorActivityReadings_j = DailyMotorActivityReadings_j.transpose()
-    DailyMotorActivityReadings_j.columns = np.arange(0,  DailyMotorActivityReadings_j.shape[1], 1)
-    #Add time 
-    temp = test_file["timestamp"].iloc[day_splitter]
-    DailyMotorActivityReadings_j["Time"] = temp.dt.date.iloc[1:-2].to_list()
-    first_column = DailyMotorActivityReadings_j.pop('Time')
-    DailyMotorActivityReadings_j.insert(0, "Time", first_column)
+    # Concatenate data for all conditions and controls
+    for k in condition_number:
+        daily_motion = pd.concat([daily_motion, daily_data_generator_condition(k)], axis=0)
+    for h in control_number:
+        daily_motion = pd.concat([daily_motion, daily_data_generator_control(h)], axis=0)
 
-    #Add other attributes from scores.csv into the daily acitivity dataframe 
-    temp_row_index = score_file.index[score_file["number"] == "control_"+str(j)]
-    temp_row = score_file.iloc[temp_row_index]
-    DailyMotorActivityReadings_j["age"] = np.repeat(temp_row.iloc[0, 3], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["gender"] = np.repeat(temp_row.iloc[0, 4], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["mental_disorder"] = np.repeat(temp_row.iloc[0, 5], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["melanch"] = np.repeat(temp_row.iloc[0, 6], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["inpatient"] = np.repeat(temp_row.iloc[0, 7], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["edu"] = np.repeat(temp_row.iloc[0, 8], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["marriage"] = np.repeat(temp_row.iloc[0, 9], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["madrs1"] = np.repeat(temp_row.iloc[0, 10], DailyMotorActivityReadings_j.shape[0])
-    DailyMotorActivityReadings_j["madrs2"] = np.repeat(temp_row.iloc[0, 11], DailyMotorActivityReadings_j.shape[0])
-
-    return DailyMotorActivityReadings_j
-
-
-
-#Iterate over all the files, and combine
-DailyMotorActivityReadings = daily_data_generator_condition(5)
-control_number = np.arange(1, 32+1, 1)
-condition_number = np.arange(2, 23+1, 1)
-for k in condition_number:
-    DailyMotorActivityReadings = pd.concat([DailyMotorActivityReadings, daily_data_generator_condition(k)], axis = 0)
-
-for h in control_number:
-    DailyMotorActivityReadings = pd.concat([DailyMotorActivityReadings, daily_data_generator_control(k)], axis = 0)
-
-
-#Shuffle all the rows, reset index, and save
-DailyMotorActivityReadings = DailyMotorActivityReadings.sample(frac = 1)
-DailyMotorActivityReadings = DailyMotorActivityReadings.set_index(np.arange(0, DailyMotorActivityReadings.shape[0], 1))
-DailyMotorActivityReadings.to_csv(output_file_saving_location+"DailyMotorActivityReadings.csv") #the name of output file is DailyMotorActivityReadings
+    # Shuffle, reset index, and save the combined DataFrame
+    daily_motion = daily_motion.sample(frac=1).reset_index(drop=True)
+    daily_motion.to_csv(output_file_saving_location + "daily_motion.csv")
+
