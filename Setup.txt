@@ -1,7 +1,10 @@
-Run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required interpreters and libraries.
+Run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required package managerss, interpreters, and libraries.
 
-MACOS
+MACOS:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install python && mkdir BPDAI && cd BPDAI && python3 -m venv BPDAIenv && source BPDAIenv/bin/activate && pip install pandas matplotlib numpy tensorflow keras scikit-learn
 
-Windows
+Windows:
+mkdir BPDAI; cd BPDAI; python -m venv BPDAIenv; .\BPDAIenv\Scripts\Activate; pip install pandas matplotlib numpy tensorflow keras scikit-learn
 
-Linux
+Linux:
+sudo apt update && sudo apt install python3-venv python3-pip && mkdir BPDAI && cd BPDAI && python3 -m venv BPDAIenv && source BPDAIenv/bin/activate && pip install pandas matplotlib numpy tensorflow keras scikit-learn
