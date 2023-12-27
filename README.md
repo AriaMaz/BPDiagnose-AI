@@ -1,7 +1,7 @@
 # Motion-Based-Diagnostic-AI-for-BPD
 
 ## Setup
-To use this model, it is recommended to create a virtual environment and download the required interpreters and libraries outlined below
+To use this model, it is recommended to run the following command in your terminal based on your respective opperating system below to create a virtual environment and download the required package managerss, interpreters, and libraries.
 
 #### MacOS
 
