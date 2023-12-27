@@ -1,6 +1,25 @@
 # Motion-Based-Diagnostic-AI-for-BPD
 
-To use this model, it is recommended to create a virtual environment and download the required interpreters and libraries outlined in the [Setup file](https://github.com/AriaMaz/Motion-Based-Diagnostic-AI-for-BPD/blob/main/Setup.txt).
+## Setup
+To use this model, it is recommended to create a virtual environment and download the required interpreters and libraries outlined below
+
+#### MacOS
+
+```html
+    <p>dummy code</p>
+```
+
+#### Windows
+
+```html
+    <p>dummy code</p>
+```
+
+#### Linux
+
+```html
+    <p>dummy code</p>
+```
 
 
 <a href="https://github.com/AriaMaz">
