@@ -16,7 +16,7 @@
 <p><p>
 <br>
 
-<h3 align="left">Project Discription</h3>
+<h3 align="left">Project Description</h3>
 Artificial intelligence program in Python that uses motor activity data from patient’s motion-sensitive wristbands to diagnose bipolar disorder with a 76% accuracy. <br>
 - Findings were presented at the Canadian Undergraduate Conference on Artificial Intelligence (CUCAI)
 
