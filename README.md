@@ -19,9 +19,9 @@ Rabab Azeem <br>
 Artificial intelligence program that uses several days of motor activity data from 55 patients’ motion-sensitive wristwatches to predict bipolar disorder with a 76% accuracy. <br>
 - Findings were presented at the Canadian Undergraduate Conference on Artificial Intelligence (CUCAI)
 
-  
-  <details>
-<summary><h4>Setup</h4></summary>
+<p></p>
+<details>
+<summary style="font-weight:bold;">Setup</summary>
 To use this model, run the following command in your terminal based on your operating system below. Creating a virtual environment and downloading the required package managers, interpreters, and libraries is recommended.
 
 #### MacOS
