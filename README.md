@@ -1,4 +1,4 @@
-# Motion-Based-Diagnostic-AI-for-BPD
+# Motion-Based-Diagnostic-AI-for-BP
 
 <a href="https://github.com/AriaMaz">
 <a href="https://www.cucai.ca/">
